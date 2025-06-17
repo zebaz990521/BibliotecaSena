@@ -39,7 +39,7 @@ class Computer extends Model
                         ->withTimestamps();
     }
 
-    public function accesoryDetails()
+    public function accesoryDetails(): HasMany
     {
         return $this->hasMany(AccessoryDetail::class);
     }
