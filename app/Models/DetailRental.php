@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class DetailRental extends Model
 {
@@ -15,12 +16,12 @@ class DetailRental extends Model
 
 
 
-    public function book()
+    public function book(): BelongsTo
     {
         return $this->belongsTo(Book::class);
     }
 
-    public function bookRental()
+    public function bookRental(): BelongsTo
     {
         return $this->belongsTo(BookRental::class);
     }

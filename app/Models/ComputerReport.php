@@ -7,4 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class ComputerReport extends Model
 {
     //
+
+    protected $fillable = [
+        
+    ];
 }
