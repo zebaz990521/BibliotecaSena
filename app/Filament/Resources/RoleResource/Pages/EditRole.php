@@ -13,8 +13,10 @@ class EditRole extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\ViewAction::make(),
-            Actions\DeleteAction::make(),
+            Actions\ViewAction::make()
+            ->label("Ver Rol"),
+            Actions\DeleteAction::make()
+            ->label("Eliminar Rol"),
         ];
     }
 }

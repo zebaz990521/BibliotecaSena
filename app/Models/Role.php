@@ -9,7 +9,7 @@ use Spatie\Permission\Models\Role as SpatieRole;
 class Role extends SpatieRole
 {
     //
-    protected $attributes = [
+   /*  protected $attributes = [
         'guard_name' => 'web',
-    ];
+    ]; */
 }

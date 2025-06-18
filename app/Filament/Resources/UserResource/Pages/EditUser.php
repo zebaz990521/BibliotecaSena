@@ -14,32 +14,12 @@ class EditUser extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\ViewAction::make(),
-            Actions\DeleteAction::make(),
+            Actions\ViewAction::make()
+            ->label("Ver Usuario"),
+            Actions\DeleteAction::make()
+            ->label("Eliminar Usuario"),
         ];
     }
 
-     protected function mutateFormDataBeforeSave(array $data): array
-    {
 
-        /* dd($data); */
-         // Buscar el usuario con el trait activo
-        $user = User::find($this->record->getKey());
-
-        dd($user);
-        // Asignar rol correctamente con Spatie
-        $user->assignRole($data['role']);
-
-        unset($data['role']);
-        return $data;
-    }
-
-    protected function mutateFormDataBeforeFill(array $data): array
-    {
-
-        $user = User::find($this->record->getKey());
-        $data['role'] = $user->getRoleNames()->first();
-
-        return $data;
-    }
 }

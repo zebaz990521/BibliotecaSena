@@ -10,10 +10,10 @@ use Filament\Panel;
 use Filament\Models\Contracts\FilamentUser;
  use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, HasRoles ;
+    use HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -59,17 +59,12 @@ class User extends Authenticatable
         return $this->hasMany(ComputerRental::class);
     }
 
-    public function roles()
+
+
+    public function canAccessPanel(Panel $panel): bool
     {
-        return $this->belongsToMany(Role::class, 'model_has_roles', 'model_id', 'role_id')
-                    ->where('model_type', self::class);
+        return $this->hasAnyRole([ 'admin','worker1', 'worker2']);
     }
-
-
-    /* public function canAccessPanel(Panel $panel): bool
-    {
-        return $this->hasAnyRole(['admin', 'worker1', 'worker2']);
-    } */
 
 
 }
