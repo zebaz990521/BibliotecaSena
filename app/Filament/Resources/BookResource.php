@@ -28,36 +28,46 @@ class BookResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('internal_code')
+                    ->label('Codigo placa SENA')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('barcode')
+                    ->label('Codigo de barras')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('title')
+                    ->label('Titulo')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('author')
+                    ->label('Autor')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('publisher')
+                    ->label('Editorial')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('isbn')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('publication_year')
+                    ->label('Año de publicacion')
                     ->required()
                     ->numeric(),
                 Forms\Components\Select::make('category_id')
+                    ->label('Categoria')
                     ->relationship('category', 'name')
                     ->required(),
                 Forms\Components\TextInput::make('language')
+                    ->label('Idioma')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('pages')
+                    ->label('Paginas')
                     ->required()
                     ->numeric(),
                 Forms\Components\Toggle::make('available')
+                    ->label('Disponibilidad')
                     ->required(),
                 Forms\Components\TextInput::make('stock')
                     ->required()
@@ -70,38 +80,50 @@ class BookResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('internal_code')
+                    ->label('Codigo placa SENA')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('barcode')
+                    ->label('Codigo de barras')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('title')
+                    ->label('Titulo')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('author')
+                    ->label('Autor')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('publisher')
+                    ->label('Editorial')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('isbn')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('publication_year')
+                    ->label('Año de publicacion')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('category.name')
+                    ->label('Categoria')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('language')
+                    ->label('Idioma')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('pages')
+                    ->label('Paginas')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\IconColumn::make('available')
+                    ->label('Disponibilidad')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('stock')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label('Fecha de creacion')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->label('Fecha de actualizacion')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -110,13 +132,15 @@ class BookResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
+                Tables\Actions\ViewAction::make()
+                ->label('Ver'),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                ])
+                ->label('sdc'),
             ]);
     }
 
