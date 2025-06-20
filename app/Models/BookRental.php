@@ -20,7 +20,7 @@ class BookRental extends Model
         'user_id',
         'person_type_id',
         'phone_number',
-        'datetime_exit',
+        'datetime_out',
         'datetime_in',
     ];
 
@@ -39,10 +39,9 @@ class BookRental extends Model
     {
         return $this->belongsTo(PersonType::class);
     }
-    public function books(): BelongsToMany
+    public function bookInventories(): BelongsToMany
     {
-        return $this->belongsToMany(Book::class, 'detail_rentals')
-                    ->withPivot('quantity')
+        return $this->belongsToMany(BookInventory::class, 'detail_rentals')
                     ->withTimestamps();
     }
 

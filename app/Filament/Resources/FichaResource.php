@@ -17,9 +17,11 @@ class FichaResource extends Resource
 {
     protected static ?string $model = Ficha::class;
 
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
     protected static ?string $navigationGroup = 'Administracion Complementarias';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationLabel = "Fichas";
 
     public static function form(Form $form): Form
     {

@@ -17,22 +17,16 @@ class BookResource extends Resource
 {
     protected static ?string $model = Book::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
-    protected static ?string $navigationGroup = 'Administracion Equipos y Libros';
+      protected static ?string $navigationGroup = 'Administracion Equipos y Libros';
 
     protected static ?string $navigationLabel = "Libros";
+
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('internal_code')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('barcode')
-                    ->required()
-                    ->maxLength(255),
                 Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(255),
@@ -46,10 +40,6 @@ class BookResource extends Resource
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('publication_year')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\Select::make('category_id')
-                    ->relationship('category', 'name')
                     ->required(),
                 Forms\Components\TextInput::make('language')
                     ->required()
@@ -57,11 +47,9 @@ class BookResource extends Resource
                 Forms\Components\TextInput::make('pages')
                     ->required()
                     ->numeric(),
-                Forms\Components\Toggle::make('available')
+                Forms\Components\Select::make('category_id')
+                    ->relationship('category', 'name')
                     ->required(),
-                Forms\Components\TextInput::make('stock')
-                    ->required()
-                    ->numeric(),
             ]);
     }
 
@@ -69,10 +57,6 @@ class BookResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('internal_code')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('barcode')
-                    ->searchable(),
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('author')
@@ -81,20 +65,13 @@ class BookResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('isbn')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('publication_year')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('category.name')
-                    ->numeric()
-                    ->sortable(),
+                Tables\Columns\TextColumn::make('publication_year'),
                 Tables\Columns\TextColumn::make('language')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('pages')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\IconColumn::make('available')
-                    ->boolean(),
-                Tables\Columns\TextColumn::make('stock')
+                Tables\Columns\TextColumn::make('category.name')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')

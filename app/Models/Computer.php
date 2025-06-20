@@ -11,8 +11,6 @@ class Computer extends Model
     //
 
     protected $fillable = [
-        'internal_code',
-        'barcode',
         'brand',
         'model',
         'serial_number',
@@ -23,24 +21,17 @@ class Computer extends Model
         'status',
         'location',
         'computer_type',
-        'available'
     ];
 
 
-
-    public function computerRentals(): HasMany
+    public function computerInventories(): HasMany
     {
-        return $this->hasMany(ComputerRental::class);
+        return $this->hasMany(ComputerInventory::class);
     }
 
-    public function accesories(): BelongsToMany
-    {
-        return $this->belongsToMany(Accessory::class, 'accessory_details')
-                        ->withTimestamps();
-    }
 
-    public function accesoryDetails(): HasMany
-    {
-        return $this->hasMany(AccessoryDetail::class);
-    }
+
+
+
+
 }

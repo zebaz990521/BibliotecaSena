@@ -17,17 +17,18 @@ class PersonTypeResource extends Resource
 {
     protected static ?string $model = PersonType::class;
 
-    protected static ?string $navigationGroup = 'Administracion Complementarias';
-
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $navigationLabel = "Tipos De Persona";
+     protected static ?string $navigationGroup = 'Administracion Complementarias';
+
+    protected static ?string $navigationLabel = "Categoria de Personas";
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
+                    ->label("Categoria")
                     ->required()
                     ->maxLength(255),
             ]);
@@ -38,6 +39,7 @@ class PersonTypeResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
+                    ->label("Categoria")
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -52,12 +54,15 @@ class PersonTypeResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make()
+                    ->label("Ver"),
+                Tables\Actions\EditAction::make()
+                    ->label("Editar"),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\DeleteBulkAction::make()
+                        ->label("Eliminar Seleccionados"),
                 ]),
             ]);
     }

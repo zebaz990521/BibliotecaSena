@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('person_type_id')->constrained()->onDelete('cascade');
             $table->string('phone_number');
-            $table->timestamp('datetime_exit');
+            $table->timestamp('datetime_out');
             $table->timestamp('datetime_in')->nullable();
             $table->timestamps();
         });

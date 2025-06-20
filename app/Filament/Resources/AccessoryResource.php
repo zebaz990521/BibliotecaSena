@@ -21,16 +21,13 @@ class AccessoryResource extends Resource
 
     protected static ?string $navigationGroup = 'Administracion Equipos y Libros';
 
-    protected static ?string $navigationLabel = "Accesorios de Portatiles";
+    protected static ?string $navigationLabel = "Accesorios";
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('code')
                     ->required()
                     ->maxLength(255),
             ]);
@@ -41,8 +38,6 @@ class AccessoryResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('code')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()

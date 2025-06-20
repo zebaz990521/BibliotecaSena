@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('accessory_details', function (Blueprint $table) {
             $table->id();
             $table->foreignId('accessory_id')->constrained()->onDelete('cascade');
-            $table->foreignId('computer_id')->constrained()->onDelete('cascade');
+            $table->foreignId('computer_inventory_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

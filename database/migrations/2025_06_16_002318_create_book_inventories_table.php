@@ -11,9 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('accessories', function (Blueprint $table) {
+        Schema::create('book_inventories', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('internal_code');
+            $table->string('barcode');
+            $table->string('location');
+            $table->enum('status', ["available", "borrowed", "damaged"])->default("available");
+            $table->foreignId('book_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -23,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('accessories');
+        Schema::dropIfExists('book_inventories');
     }
 };

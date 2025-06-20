@@ -12,12 +12,11 @@ class Accessory extends Model
 
     protected $fillable = [
         'name',
-        'code',
     ];
 
-    public function computers(): BelongsToMany
+    public function computerInventories(): BelongsToMany
     {
-        return $this->belongsToMany(Computer::class, 'accessory_details')
+        return $this->belongsToMany(ComputerInventory::class, 'accessory_details')
                     ->withTimestamps();
     }
 

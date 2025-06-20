@@ -11,9 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('accessories', function (Blueprint $table) {
+        Schema::create('computer_inventories', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('internal_code');
+            $table->string('barcode');
+            $table->enum('status', ["available", "borrowed", "damaged"])->default("available");
+            $table->foreignId('computer_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -23,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('accessories');
+        Schema::dropIfExists('computer_inventories');
     }
 };

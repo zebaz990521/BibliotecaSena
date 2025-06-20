@@ -13,8 +13,6 @@ return new class extends Migration
     {
         Schema::create('computers', function (Blueprint $table) {
             $table->id();
-            $table->string('internal_code');
-            $table->string('barcode');
             $table->string('brand');
             $table->string('model');
             $table->string('serial_number');
@@ -22,10 +20,8 @@ return new class extends Migration
             $table->string('ram_size');
             $table->string('storage_size');
             $table->string('operating_system');
-            $table->enum('status', ['active', 'inactive'])->default('active');
             $table->string('location');
             $table->enum('computer_type', ['desktop', 'laptop']);
-            $table->boolean('available')->default(true);
             $table->timestamps();
         });
     }

@@ -21,8 +21,8 @@ class AccessoryDetail extends Model
         return $this->belongsTo(Accessory::class);
     }
 
-    public function computer(): BelongsTo
+    public function computerInventory(): BelongsTo
     {
-        return $this->belongsTo(Computer::class);
+        return $this->belongsTo(ComputerInventory::class);
     }
 }

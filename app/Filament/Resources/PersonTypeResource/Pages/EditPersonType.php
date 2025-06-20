@@ -13,8 +13,10 @@ class EditPersonType extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\ViewAction::make(),
-            Actions\DeleteAction::make(),
+            Actions\ViewAction::make()
+                ->label("Ver Categoria"),
+            Actions\DeleteAction::make()
+                ->label("Eliminar Categoria"),
         ];
     }
 }

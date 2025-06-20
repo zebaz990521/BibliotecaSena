@@ -18,7 +18,7 @@ class DetailRental extends Model
 
     public function book(): BelongsTo
     {
-        return $this->belongsTo(Book::class);
+        return $this->belongsTo(BookInventory::class);
     }
 
     public function bookRental(): BelongsTo
