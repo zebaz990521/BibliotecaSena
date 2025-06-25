@@ -17,6 +17,7 @@ class ComputerInventory extends Model
         'location',
         'status',
         'book_id',
+        'computer_id'
     ];
 
 

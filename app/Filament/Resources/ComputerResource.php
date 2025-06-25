@@ -29,30 +29,42 @@ class ComputerResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('brand')
                     ->required()
+                    ->label("Marca")
                     ->maxLength(255),
                 Forms\Components\TextInput::make('model')
+                    ->label("Modelo")
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('serial_number')
+                    ->label("Numero de serie")
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('processor')
+                    ->label("Procesador")
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('ram_size')
+                    ->label("Espacio de Ram")
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('storage_size')
+                    ->label("Espacio de Almacenamiento")
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('operating_system')
+                    ->label("Sistema Operativo")
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('location')
+                    ->label("Localizacion o puesto")
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('computer_type')
-                    ->required(),
+                Forms\Components\Select::make('computer_type')
+                    ->label("Tipo de Computador")
+                    ->options(options: [
+                        'desktop' => 'Escritorio',
+                        'laptop' => 'Portatil',
+                    ])
             ]);
     }
 

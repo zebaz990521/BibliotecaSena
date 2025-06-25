@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('phone_number');
             $table->dateTime('datetime_out');
             $table->dateTime('datetime_in')->nullable();
-            $table->string('signature')->nullable();
-            $table->boolean('received')->default(false);
+            $table->longText('signature')->nullable();
+            $table->boolean('received')->default(false)->nullable();
             $table->timestamps();
         });
     }
