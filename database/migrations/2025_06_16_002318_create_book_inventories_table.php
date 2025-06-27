@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('book_inventories', function (Blueprint $table) {
             $table->id();
-            $table->string('internal_code');
             $table->string('barcode');
             $table->string('location');
             $table->enum('status', ["available", "borrowed", "damaged"])->default("available");

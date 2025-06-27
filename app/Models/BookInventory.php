@@ -12,7 +12,6 @@ class BookInventory extends Model
     //
 
     protected $fillable = [
-        'internal_code',
         'barcode',
         'location',
         'status',
@@ -29,14 +28,5 @@ class BookInventory extends Model
     }
 
 
-     public function bookRentals(): BelongsToMany
-    {
-        return $this->belongsToMany(BookRental::class, 'detail_rentals')
-                    ->withTimestamps();
-    }
-
-    public function detailRentals(): HasMany
-    {
-        return $this->hasMany(DetailRental::class);
-    }
+ 
 }

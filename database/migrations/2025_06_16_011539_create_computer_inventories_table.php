@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('computer_inventories', function (Blueprint $table) {
             $table->id();
-            $table->string('internal_code');
             $table->string('barcode');
+            $table->string('location');
+            $table->foreignId('team_category_id')->constrained()->onDelete('cascade');
             $table->enum('status', ["available", "borrowed", "damaged"])->default("available");
             $table->foreignId('computer_id')->constrained()->onDelete('cascade');
             $table->timestamps();

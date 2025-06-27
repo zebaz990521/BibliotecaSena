@@ -12,20 +12,15 @@ class ComputerInventory extends Model
     //
 
     protected $fillable = [
-        'internal_code',
         'barcode',
         'location',
         'status',
-        'book_id',
+        'team_category_id',
         'computer_id'
     ];
 
 
 
-     public function computerRentals(): HasMany
-    {
-        return $this->hasMany(ComputerRental::class);
-    }
     public function accesories(): BelongsToMany
     {
         return $this->belongsToMany(Accessory::class, 'accessory_details')

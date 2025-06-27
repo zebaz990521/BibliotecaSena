@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class DetailRental extends Model
+class DetailLoan extends Model
 {
     //
     protected $fillable = [
-        'book_rental_id',
-        'book_id',
-        'quantity'
+        'loan_id',
+        'book_inventory_id',
+        'computer_inventory_id'
     ];
 
 
@@ -21,8 +21,5 @@ class DetailRental extends Model
         return $this->belongsTo(BookInventory::class);
     }
 
-    public function bookRental(): BelongsTo
-    {
-        return $this->belongsTo(BookRental::class);
-    }
+
 }

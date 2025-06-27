@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('computers', function (Blueprint $table) {
+        Schema::create('administratives', function (Blueprint $table) {
             $table->id();
-            $table->string('brand');
-            $table->string('model');
-            $table->string('serial_number');
-            $table->string('processor');
-            $table->string('ram_size');
-            $table->string('storage_size');
-            $table->string('operating_system');
+            $table->foreignId('document_type_id')->constrained()->onDelete('cascade');
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('identification');
+            $table->string('phone_number');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('computers');
+        Schema::dropIfExists('administratives');
     }
 };
