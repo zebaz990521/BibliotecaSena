@@ -12,7 +12,7 @@ class AccessoryDetail extends Model
 
     protected $fillable = [
         'accessory_id',
-        'computer_id'
+        'computer_inventory_id'
     ];
 
 

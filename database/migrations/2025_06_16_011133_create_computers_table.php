@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('ram_size');
             $table->string('storage_size');
             $table->string('operating_system');
+            $table->foreignId('team_category_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

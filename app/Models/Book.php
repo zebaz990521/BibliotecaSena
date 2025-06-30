@@ -19,6 +19,7 @@ class Book extends Model
         'publication_year',
         'language',
         'pages',
+        'category_id'
     ];
 
 

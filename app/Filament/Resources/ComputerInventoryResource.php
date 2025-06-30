@@ -17,92 +17,23 @@ class ComputerInventoryResource extends Resource
 {
     protected static ?string $model = ComputerInventory::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-computer-desktop';
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-
                 Forms\Components\TextInput::make('barcode')
-                        ->label('Código de barras')
-                        ->required()
-                        ->maxLength(255)
-                        ->live()
-                        ->autofocus() // Opcional: enfoca al cargar
-                        ->afterStateHydrated(fn ($state, callable $set) => $set('barcode', $state)),
-
-                Forms\Components\TextInput::make('internal_code')
-                        ->label('Código interno')
-                        ->required()
-                        ->maxLength(255)
-                        ->live()
-                        ->afterStateHydrated(fn ($state, callable $set) => $set('internal_code', $state)),
-                Forms\Components\Select::make('status')
-                    ->label("Estado")
-                    ->options([
-                        'available' => 'Disponible',
-                        'borrowed' => 'Prestado',
-                        'damaged' => 'Dañado',
-                    ])
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('location')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('status')
                     ->required(),
                 Forms\Components\Select::make('computer_id')
-                    ->label("Nombre del Computador o Portatil")
-                    ->relationship('computer', 'model')
-                     ->createOptionForm([
-                            Forms\Components\TextInput::make('brand')
-                                ->required()
-                                ->label("Marca")
-                                ->maxLength(255),
-                            Forms\Components\TextInput::make('model')
-                                ->label("Modelo")
-                                ->required()
-                                ->maxLength(255),
-                            Forms\Components\TextInput::make('serial_number')
-                                ->label("Numero de serie")
-                                ->required()
-                                ->maxLength(255),
-                            Forms\Components\TextInput::make('processor')
-                                ->label("Procesador")
-                                ->required()
-                                ->maxLength(255),
-                            Forms\Components\TextInput::make('ram_size')
-                                ->label("Espacio de Ram")
-                                ->required()
-                                ->maxLength(255),
-                            Forms\Components\TextInput::make('storage_size')
-                                ->label("Espacio de Almacenamiento")
-                                ->required()
-                                ->maxLength(255),
-                            Forms\Components\TextInput::make('operating_system')
-                                ->label("Sistema Operativo")
-                                ->required()
-                                ->maxLength(255),
-                            Forms\Components\TextInput::make('location')
-                                ->label("Localizacion o puesto")
-                                ->required()
-                                ->maxLength(255),
-                            Forms\Components\Select::make('computer_type')
-                                ->label("Tipo de Computador")
-                                ->options(options: [
-                                    'desktop' => 'Escritorio',
-                                    'laptop' => 'Portatil',
-                                ])
-                            ])
-                    ->searchable()
-                    ->preload()
-                    ->live()
+                    ->relationship('computer', 'id')
                     ->required(),
-                Forms\Components\BelongsToManyMultiSelect::make('accessories')
-                    ->relationship('accesories', 'name')
-                    ->label('Accesorios')
-                    ->preload()
-                    ->live()
-                    ->createOptionForm([
-                        Forms\Components\TextInput::make('name')
-                            ->label("Nombre del Accesorio")
-                            ->required(),
-                    ]),
             ]);
     }
 
@@ -110,14 +41,14 @@ class ComputerInventoryResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('internal_code')
-                    ->searchable(),
                 Tables\Columns\TextColumn::make('barcode')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('location')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('status'),
-                Tables\Columns\TextColumn::make('computer.brand')->label('Marca')
+                Tables\Columns\TextColumn::make('computer.id')
+                    ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('computer.model')->label('Model'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

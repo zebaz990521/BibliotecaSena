@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\ComputerRentalResource\Pages;
+namespace App\Filament\Resources\BookInventoryResource\Pages;
 
-use App\Filament\Resources\ComputerRentalResource;
+use App\Filament\Resources\BookInventoryResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
-class EditComputerRental extends EditRecord
+class EditBookInventory extends EditRecord
 {
-    protected static string $resource = ComputerRentalResource::class;
+    protected static string $resource = BookInventoryResource::class;
 
     protected function getHeaderActions(): array
     {

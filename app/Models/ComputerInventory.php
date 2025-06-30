@@ -15,7 +15,6 @@ class ComputerInventory extends Model
         'barcode',
         'location',
         'status',
-        'team_category_id',
         'computer_id'
     ];
 
@@ -35,5 +34,11 @@ class ComputerInventory extends Model
     public function computer(): BelongsTo
     {
         return $this->belongsTo(Computer::class);
+    }
+
+    public function loans(): BelongsToMany
+    {
+        return $this->belongsToMany(Loan::class, 'detail_loans')
+            ->withTimestamps();
     }
 }

@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\FichaResource\Pages;
-use App\Filament\Resources\FichaResource\RelationManagers;
-use App\Models\Ficha;
+use App\Filament\Resources\UserTypeResource\Pages;
+use App\Filament\Resources\UserTypeResource\RelationManagers;
+use App\Models\UserType;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,24 +13,17 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class FichaResource extends Resource
+class UserTypeResource extends Resource
 {
-    protected static ?string $model = Ficha::class;
+    protected static ?string $model = UserType::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
-    protected static ?string $navigationGroup = 'Administracion Complementarias';
-
-    protected static ?string $navigationLabel = "Fichas";
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('card_number')
                     ->required()
                     ->maxLength(255),
             ]);
@@ -41,8 +34,6 @@ class FichaResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('card_number')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -77,10 +68,10 @@ class FichaResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListFichas::route('/'),
-            'create' => Pages\CreateFicha::route('/create'),
-            'view' => Pages\ViewFicha::route('/{record}'),
-            'edit' => Pages\EditFicha::route('/{record}/edit'),
+            'index' => Pages\ListUserTypes::route('/'),
+            'create' => Pages\CreateUserType::route('/create'),
+            'view' => Pages\ViewUserType::route('/{record}'),
+            'edit' => Pages\EditUserType::route('/{record}/edit'),
         ];
     }
 }

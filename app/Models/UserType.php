@@ -13,5 +13,10 @@ class UserType extends Model
         'name',
     ];
 
+    public function loans(): HasMany
+    {
+        return $this->hasMany(Loan::class);
+    }
+
 
 }

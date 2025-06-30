@@ -27,6 +27,12 @@ class BookInventory extends Model
         return $this->belongsTo(Book::class);
     }
 
+    public function loans(): BelongsToMany
+    {
+        return $this->belongsToMany(Loan::class, 'detail_loans')
+            ->withTimestamps();
+    }
 
- 
+
+
 }

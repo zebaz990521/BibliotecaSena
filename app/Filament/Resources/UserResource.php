@@ -60,11 +60,6 @@ class UserResource extends Resource
                             ->label("Nombre")
                             ->maxLength(255),
                     ]),
-                /* Forms\Components\CheckboxList::make('role_id')
-                    ->label("Roles")
-                    ->relationship("roles", "name")
-                    ->searchable()
-                    ->columns(2), */
             ]);
     }
 

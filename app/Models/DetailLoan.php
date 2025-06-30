@@ -16,9 +16,19 @@ class DetailLoan extends Model
 
 
 
-    public function book(): BelongsTo
+    public function bookInventory(): BelongsTo
     {
         return $this->belongsTo(BookInventory::class);
+    }
+
+    public function computerInventory(): BelongsTo
+    {
+        return $this->belongsTo(ComputerInventory::class);
+    }
+
+    public function loan(): BelongsTo
+    {
+        return $this->belongsTo(Loan::class);
     }
 
 

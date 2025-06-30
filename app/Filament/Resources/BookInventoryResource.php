@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\PersonTypeResource\Pages;
-use App\Filament\Resources\PersonTypeResource\RelationManagers;
-use App\Models\PersonType;
+use App\Filament\Resources\BookInventoryResource\Pages;
+use App\Filament\Resources\BookInventoryResource\RelationManagers;
+use App\Models\BookInventory;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,24 +13,27 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class PersonTypeResource extends Resource
+class BookInventoryResource extends Resource
 {
-    protected static ?string $model = PersonType::class;
+    protected static ?string $model = BookInventory::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
-     protected static ?string $navigationGroup = 'Administracion Complementarias';
-
-    protected static ?string $navigationLabel = "Categoria de Personas";
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->label("Categoria")
+                Forms\Components\TextInput::make('barcode')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\TextInput::make('location')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('status')
+                    ->required(),
+                Forms\Components\Select::make('book_id')
+                    ->relationship('book', 'title')
+                    ->required(),
             ]);
     }
 
@@ -38,9 +41,14 @@ class PersonTypeResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
-                    ->label("Categoria")
+                Tables\Columns\TextColumn::make('barcode')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('location')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('status'),
+                Tables\Columns\TextColumn::make('book.title')
+                    ->numeric()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -54,15 +62,12 @@ class PersonTypeResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make()
-                    ->label("Ver"),
-                Tables\Actions\EditAction::make()
-                    ->label("Editar"),
+                Tables\Actions\ViewAction::make(),
+                Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make()
-                        ->label("Eliminar Seleccionados"),
+                    Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
     }
@@ -77,10 +82,10 @@ class PersonTypeResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListPersonTypes::route('/'),
-            'create' => Pages\CreatePersonType::route('/create'),
-            'view' => Pages\ViewPersonType::route('/{record}'),
-            'edit' => Pages\EditPersonType::route('/{record}/edit'),
+            'index' => Pages\ListBookInventories::route('/'),
+            'create' => Pages\CreateBookInventory::route('/create'),
+            'view' => Pages\ViewBookInventory::route('/{record}'),
+            'edit' => Pages\EditBookInventory::route('/{record}/edit'),
         ];
     }
 }

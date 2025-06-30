@@ -19,16 +19,11 @@ class CategoryResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-      protected static ?string $navigationGroup = 'Administracion Equipos y Libros';
-
-    protected static ?string $navigationLabel = "Categorias";
-
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
-                    ->label("Nombre de Categoria")
                     ->required()
                     ->maxLength(255),
             ]);
@@ -39,7 +34,6 @@ class CategoryResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                    ->label("Categoria")
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -54,15 +48,12 @@ class CategoryResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make()
-                    ->label("Ver Categoria"),
-                Tables\Actions\EditAction::make()
-                    ->label("Editar Categoria"),
+                Tables\Actions\ViewAction::make(),
+                Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make()
-                        ->label("Eliminar Seleccionados"),
+                    Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
     }

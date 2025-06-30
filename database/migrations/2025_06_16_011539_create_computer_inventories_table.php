@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('barcode');
             $table->string('location');
-            $table->foreignId('team_category_id')->constrained()->onDelete('cascade');
             $table->enum('status', ["available", "borrowed", "damaged"])->default("available");
             $table->foreignId('computer_id')->constrained()->onDelete('cascade');
             $table->timestamps();

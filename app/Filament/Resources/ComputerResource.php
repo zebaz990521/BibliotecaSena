@@ -17,10 +17,6 @@ class ComputerResource extends Resource
 {
     protected static ?string $model = Computer::class;
 
-      protected static ?string $navigationGroup = 'Administracion Equipos y Libros';
-
-    protected static ?string $navigationLabel = "Computadores y Portatiles";
-
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
@@ -29,42 +25,28 @@ class ComputerResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('brand')
                     ->required()
-                    ->label("Marca")
                     ->maxLength(255),
                 Forms\Components\TextInput::make('model')
-                    ->label("Modelo")
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('serial_number')
-                    ->label("Numero de serie")
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('processor')
-                    ->label("Procesador")
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('ram_size')
-                    ->label("Espacio de Ram")
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('storage_size')
-                    ->label("Espacio de Almacenamiento")
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('operating_system')
-                    ->label("Sistema Operativo")
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('location')
-                    ->label("Localizacion o puesto")
+                Forms\Components\TextInput::make('team_category_id')
                     ->required()
-                    ->maxLength(255),
-                Forms\Components\Select::make('computer_type')
-                    ->label("Tipo de Computador")
-                    ->options(options: [
-                        'desktop' => 'Escritorio',
-                        'laptop' => 'Portatil',
-                    ])
+                    ->numeric(),
             ]);
     }
 
@@ -86,9 +68,9 @@ class ComputerResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('operating_system')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('location')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('computer_type'),
+                Tables\Columns\TextColumn::make('team_category_id')
+                    ->numeric()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
